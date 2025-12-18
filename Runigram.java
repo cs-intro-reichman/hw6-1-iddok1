@@ -149,7 +149,7 @@ public class Runigram {
 		{
 			for(int j=0;j<scaled[0].length;j++)
 			{
-				scaled[i][j] = scaled[i*hI/height][j*wI/width];
+				scaled[i][j] = image[i*hI/height][j*wI/width];
 			}
 		}
 		return scaled;
@@ -176,7 +176,7 @@ public class Runigram {
 	 */
 	public static Color[][] blend(Color[][] image1, Color[][] image2, double alpha) {
 		//// Replace the following statement with your code
-		Color [][] blended = new Color[image1.length][image1[0].length];
+		Color [][] blended = new Color[image1.length][image2[0].length];
 		for(int i=0;i<blended.length;i++)
 		{
 			for(int j=0;j<blended[0].length;j++)
@@ -194,14 +194,13 @@ public class Runigram {
 	 * of the source image.
 	 */
 	public static void morph(Color[][] source, Color[][] target, int n) {
-		if(target.length!= source.length || target[0].length!= source[0].length)
+		scaled(source, target.length, target[0].length);
+		
+		setCanvas(source);
+		for(int i=n;i>=0;i--)
 		{
-			target = scaled(target, source.length, source[0].length);
-		}
-		setCanvas(target);
-		for(int i=0;i<n;i++)
-		{
-			display(blend(source,target , ((double)n-i/n)));
+			Runigram.display(blend(source,target , i/n));
+			StdDraw.pause(500);
 		}
 	}
 	
