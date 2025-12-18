@@ -22,7 +22,7 @@ public class Editor2 {
 		StdDraw.pause(3000);
 		Runigram.setCanvas(nImage);
 		Runigram.display(nImage);
-		
+		//check
 
 	}
 }
